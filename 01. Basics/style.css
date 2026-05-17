@@ -194,6 +194,75 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.todo-panel {
+  margin-top: 22px;
+}
+
+.todo-card {
+  display: grid;
+  gap: 18px;
+}
+
+.todo-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+}
+
+.todo-controls input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  padding: 14px 16px;
+  font-size: 1rem;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.todo-item.completed {
+  opacity: 0.72;
+  text-decoration: line-through;
+}
+
+.todo-item button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.todo-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.todo-footer span {
+  color: var(--muted);
+}
+
 .panel-alt {
   background: rgba(255, 255, 255, 0.06);
 }

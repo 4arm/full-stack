@@ -23,6 +23,7 @@
             <a href="#calculator">Calculator</a>
             <a href="#local-time">Local Time</a>
             <a href="#jumpstart">Jumpstart</a>
+            <a href="#todo">Todo</a>
         </div>
     </nav>
 
@@ -61,6 +62,22 @@
                 <p>Updated every second.</p>
                 <div class="time-card">
                     <span id="localTime">--:--:--</span>
+                </div>
+            </article>
+        </section>
+
+        <section class="todo-panel">
+            <article id="todo" class="panel todo-card">
+                <h2>Todo List</h2>
+                <p>Keep your task list synced in the browser.</p>
+                <div class="todo-controls">
+                    <input id="todoInput" type="text" placeholder="Add a new task">
+                    <button id="todoAddButton" class="secondary-button">Add</button>
+                </div>
+                <ul id="todoList" class="todo-list"></ul>
+                <div class="todo-footer">
+                    <span id="todoCount">0 tasks</span>
+                    <button id="clearTodosButton" class="secondary-button">Clear completed</button>
                 </div>
             </article>
         </section>
