@@ -12,3 +12,13 @@ console.log(greet(user));
 console.log('2 + 3 =', add(2, 3));
 
 alert(greet(user));
+
+function redirectToYouTube() {
+  window.location.href = 'https://www.youtube.com';
+}
+
+const youtubeButton = document.getElementById('youtubeButton');
+if (youtubeButton) {
+  youtubeButton.addEventListener('click', redirectToYouTube);
+}
+
