@@ -6,8 +6,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="topbar" id="topbar">
+        <div class="brand">
+            <span class="brand-mark">JS</span>
+            <div>
+                <p class="brand-name">Utility Studio</p>
+                <small class="brand-tag">Interactive tools</small>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#calculator">Calculator</a>
+            <a href="#local-time">Local Time</a>
+            <a href="#jumpstart">Jumpstart</a>
+        </div>
+    </nav>
+
     <main class="page-shell">
-        <header class="hero">
+        <header class="hero" id="jumpstart">
             <div>
                 <p class="eyebrow">Welcome back, Izham</p>
                 <h1>Daily JavaScript Utilities</h1>
@@ -21,7 +41,7 @@
         </header>
 
         <section class="grid-panel">
-            <article class="panel">
+            <article id="calculator" class="panel">
                 <h2>Calculator</h2>
                 <p>Enter two numbers and click to add them.</p>
                 <div class="form-row">
@@ -36,7 +56,7 @@
                 <p id="sumResult" class="result-text"></p>
             </article>
 
-            <article class="panel panel-alt">
+            <article id="local-time" class="panel panel-alt">
                 <h2>Local Time</h2>
                 <p>Updated every second.</p>
                 <div class="time-card">
