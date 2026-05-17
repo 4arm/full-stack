@@ -1,0 +1,17 @@
+install extension
+
+    github theme
+    live server
+    vscode-icons
+
+create index.html and app.js
+
+    create alert and console in body tag in index.html
+
+
+Instead of write alert and console in body tag in index.html,
+    I put it inside the app.js, 
+
+Have shortcut, 'ctrl' + 'space' in the src of script tag in index.html, it will show the app.js file, 
+    then I select it and it will link the app.js to index.html, so when I open the index.html in 
+    live server, it will run the code in app.js and show the alert and console log.      
