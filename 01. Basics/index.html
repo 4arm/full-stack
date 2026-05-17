@@ -3,32 +3,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>01. Basics</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello Izham</h1>
+    <main class="page-shell">
+        <header class="hero">
+            <div>
+                <p class="eyebrow">Welcome back, Izham</p>
+                <h1>Daily JavaScript Utilities</h1>
+                <p class="hero-copy">A simple dashboard for quick actions, math, and time tracking.</p>
+            </div>
+            <div class="hero-card">
+                <h2>Jumpstart</h2>
+                <p>Tap the button to open YouTube in a new tab.</p>
+                <button id="youtubeButton" class="primary-button">Visit YouTube</button>
+            </div>
+        </header>
 
-    <section>
-        <h2>Quick Utilities</h2>
+        <section class="grid-panel">
+            <article class="panel">
+                <h2>Calculator</h2>
+                <p>Enter two numbers and click to add them.</p>
+                <div class="form-row">
+                    <label for="num1">Number 1</label>
+                    <input id="num1" type="number" placeholder="Enter first number">
+                </div>
+                <div class="form-row">
+                    <label for="num2">Number 2</label>
+                    <input id="num2" type="number" placeholder="Enter second number">
+                </div>
+                <button id="addButton" class="secondary-button">Add numbers</button>
+                <p id="sumResult" class="result-text"></p>
+            </article>
 
-        <div>
-            <button id="youtubeButton">Visit YouTube</button>
-        </div>
-
-        <div>
-            <h3>Number Calculator</h3>
-            <label for="num1">Number 1</label>
-            <input id="num1" type="number" placeholder="Enter first number">
-            <label for="num2">Number 2</label>
-            <input id="num2" type="number" placeholder="Enter second number">
-            <button id="addButton">Add numbers</button>
-            <p id="sumResult"></p>
-        </div>
-
-        <div>
-            <h3>Local Time</h3>
-            <p>Current time: <span id="localTime"></span></p>
-        </div>
-    </section>
+            <article class="panel panel-alt">
+                <h2>Local Time</h2>
+                <p>Updated every second.</p>
+                <div class="time-card">
+                    <span id="localTime">--:--:--</span>
+                </div>
+            </article>
+        </section>
+    </main>
 
     <script src="app.js"></script>
 </body>
