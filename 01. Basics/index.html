@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01. Basics</title>
+    <title>Utility Studio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,65 +20,38 @@
             <span></span>
         </button>
         <div class="nav-links" id="navLinks">
-            <a href="#calculator">Calculator</a>
-            <a href="#local-time">Local Time</a>
-            <a href="#jumpstart">Jumpstart</a>
-            <a href="#todo">Todo</a>
+            <a href="calculator.html">Calculator</a>
+            <a href="time.html">Local Time</a>
+            <a href="todo.html">Todo</a>
         </div>
     </nav>
 
     <main class="page-shell">
-        <header class="hero" id="jumpstart">
+        <header class="hero" id="home">
             <div>
                 <p class="eyebrow">Welcome back, Izham</p>
-                <h1>Daily JavaScript Utilities</h1>
-                <p class="hero-copy">A simple dashboard for quick actions, math, and time tracking.</p>
+                <h1>Utility Studio</h1>
+                <p class="hero-copy">Separate pages make each feature easier to manage and scale.</p>
             </div>
             <div class="hero-card">
-                <h2>Jumpstart</h2>
-                <p>Tap the button to open YouTube in a new tab.</p>
-                <button id="youtubeButton" class="primary-button">Visit YouTube</button>
+                <h2>Choose your tool</h2>
+                <p>Open one feature at a time on its own page.</p>
+                <div class="hero-buttons">
+                    <a class="primary-button" href="calculator.html">Calculator</a>
+                    <a class="secondary-button" href="todo.html">Todo</a>
+                </div>
             </div>
         </header>
 
         <section class="grid-panel">
-            <article id="calculator" class="panel">
-                <h2>Calculator</h2>
-                <p>Enter two numbers and click to add them.</p>
-                <div class="form-row">
-                    <label for="num1">Number 1</label>
-                    <input id="num1" type="number" placeholder="Enter first number">
-                </div>
-                <div class="form-row">
-                    <label for="num2">Number 2</label>
-                    <input id="num2" type="number" placeholder="Enter second number">
-                </div>
-                <button id="addButton" class="secondary-button">Add numbers</button>
-                <p id="sumResult" class="result-text"></p>
+            <article class="panel">
+                <h2>Why separate pages?</h2>
+                <p>Separate files let you edit one component without touching the others, reduce page complexity, and make maintenance easier.</p>
             </article>
 
-            <article id="local-time" class="panel panel-alt">
-                <h2>Local Time</h2>
-                <p>Updated every second.</p>
-                <div class="time-card">
-                    <span id="localTime">--:--:--</span>
-                </div>
-            </article>
-        </section>
-
-        <section class="todo-panel">
-            <article id="todo" class="panel todo-card">
-                <h2>Todo List</h2>
-                <p>Keep your task list synced in the browser.</p>
-                <div class="todo-controls">
-                    <input id="todoInput" type="text" placeholder="Add a new task">
-                    <button id="todoAddButton" class="secondary-button">Add</button>
-                </div>
-                <ul id="todoList" class="todo-list"></ul>
-                <div class="todo-footer">
-                    <span id="todoCount">0 tasks</span>
-                    <button id="clearTodosButton" class="secondary-button">Clear completed</button>
-                </div>
+            <article class="panel panel-alt">
+                <h2>What stays shared?</h2>
+                <p>Your styles and interactive logic can still be shared across pages using common `style.css` and `app.js` files.</p>
             </article>
         </section>
     </main>

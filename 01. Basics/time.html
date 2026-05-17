@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Time | Utility Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topbar" id="topbar">
+        <div class="brand">
+            <span class="brand-mark">JS</span>
+            <div>
+                <p class="brand-name">Utility Studio</p>
+                <small class="brand-tag">Local Time</small>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="calculator.html">Calculator</a>
+            <a href="todo.html">Todo</a>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        <header class="hero" id="local-time">
+            <div>
+                <p class="eyebrow">Local Time</p>
+                <h1>Live Clock</h1>
+                <p class="hero-copy">See the current time update every second.</p>
+            </div>
+            <div class="hero-card">
+                <h2>Stay on track</h2>
+                <p>Refresh the page or open again and the clock keeps running.</p>
+                <a class="primary-button" href="index.html">Back to home</a>
+            </div>
+        </header>
+
+        <section class="grid-panel">
+            <article class="panel panel-alt">
+                <h2>Current Time</h2>
+                <p>Updated every second.</p>
+                <div class="time-card">
+                    <span id="localTime">--:--:--</span>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

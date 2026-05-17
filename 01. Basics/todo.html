@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo | Utility Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topbar" id="topbar">
+        <div class="brand">
+            <span class="brand-mark">JS</span>
+            <div>
+                <p class="brand-name">Utility Studio</p>
+                <small class="brand-tag">Todo</small>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="calculator.html">Calculator</a>
+            <a href="time.html">Local Time</a>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        <header class="hero" id="todo">
+            <div>
+                <p class="eyebrow">Todo</p>
+                <h1>Task Management</h1>
+                <p class="hero-copy">Keep a persistent task list with browser storage.</p>
+            </div>
+            <div class="hero-card">
+                <h2>Organize your day</h2>
+                <p>Add tasks, mark them done, and clear completed items.</p>
+                <a class="primary-button" href="index.html">Back to home</a>
+            </div>
+        </header>
+
+        <section class="todo-panel">
+            <article class="panel todo-card">
+                <h2>Todo List</h2>
+                <p>Keep your task list synced in the browser.</p>
+                <div class="todo-controls">
+                    <input id="todoInput" type="text" placeholder="Add a new task">
+                    <button id="todoAddButton" class="secondary-button">Add</button>
+                </div>
+                <ul id="todoList" class="todo-list"></ul>
+                <div class="todo-footer">
+                    <span id="todoCount">0 tasks</span>
+                    <button id="clearTodosButton" class="secondary-button">Clear completed</button>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator | Utility Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topbar" id="topbar">
+        <div class="brand">
+            <span class="brand-mark">JS</span>
+            <div>
+                <p class="brand-name">Utility Studio</p>
+                <small class="brand-tag">Calculator</small>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="time.html">Local Time</a>
+            <a href="todo.html">Todo</a>
+        </div>
+    </nav>
+
+    <main class="page-shell">
+        <header class="hero" id="calculator">
+            <div>
+                <p class="eyebrow">Calculator</p>
+                <h1>Quick Number Addition</h1>
+                <p class="hero-copy">Use this page for fast math and numeric experiments.</p>
+            </div>
+            <div class="hero-card">
+                <h2>Ready to calculate</h2>
+                <p>Enter two values and get the sum instantly.</p>
+                <a class="primary-button" href="index.html">Back to home</a>
+            </div>
+        </header>
+
+        <section class="grid-panel">
+            <article class="panel">
+                <h2>Calculator</h2>
+                <p>Enter two numbers and click to add them.</p>
+                <div class="form-row">
+                    <label for="num1">Number 1</label>
+                    <input id="num1" type="number" placeholder="Enter first number">
+                </div>
+                <div class="form-row">
+                    <label for="num2">Number 2</label>
+                    <input id="num2" type="number" placeholder="Enter second number">
+                </div>
+                <button id="addButton" class="secondary-button">Add numbers</button>
+                <p id="sumResult" class="result-text"></p>
+            </article>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

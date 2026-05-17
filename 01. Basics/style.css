@@ -31,7 +31,7 @@ body {
 .page-shell {
   max-width: 980px;
   margin: 0 auto;
-  padding: 36px 24px 48px;
+  padding: 28px 24px 44px;
 }
 
 .topbar {
@@ -40,12 +40,13 @@ body {
   align-items: center;
   gap: 16px;
   padding: 18px 24px;
-  margin: 0 auto 28px;
+  margin: 0 auto 32px;
   max-width: 980px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.05);
+  width: min(100%, 980px);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
 
 .brand {
@@ -82,6 +83,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .nav-links a {
@@ -124,10 +127,10 @@ body {
 
 .hero {
   display: grid;
-  gap: 24px;
-  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: 28px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
   align-items: start;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .hero-card,
@@ -137,6 +140,20 @@ body {
   border-radius: 28px;
   box-shadow: var(--shadow);
   padding: 28px;
+}
+
+.hero-card {
+  min-width: 0;
+}
+
+.panel {
+  min-width: 0;
+}
+
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hero h1 {
@@ -158,6 +175,13 @@ body {
   color: var(--muted);
   max-width: 42rem;
   line-height: 1.75;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
 }
 
 .primary-button,
@@ -191,7 +215,7 @@ body {
 .grid-panel {
   display: grid;
   gap: 22px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
 }
 
 .todo-panel {
@@ -333,6 +357,14 @@ input[type='number']::placeholder {
   .grid-panel {
     grid-template-columns: 1fr;
   }
+
+  .page-shell {
+    padding: 24px 18px 36px;
+  }
+
+  .topbar {
+    padding: 18px 20px;
+  }
 }
 
 @media (max-width: 720px) {
@@ -341,7 +373,7 @@ input[type='number']::placeholder {
     align-items: stretch;
     padding: 18px 20px;
     position: relative;
-    cursor: pointer;
+    cursor: default;
   }
 
   .menu-toggle {
