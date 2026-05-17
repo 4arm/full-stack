@@ -5,9 +5,31 @@
     <title>01. Basics</title>
 </head>
 <body>
-    <script src="app.js"></script>
     <h1>Hello Izham</h1>
-    <button id="youtubeButton"><a href="https://www.youtube.com" target="_blank">Visit YouTube</a></button>
-    
+
+    <section>
+        <h2>Quick Utilities</h2>
+
+        <div>
+            <button id="youtubeButton">Visit YouTube</button>
+        </div>
+
+        <div>
+            <h3>Number Calculator</h3>
+            <label for="num1">Number 1</label>
+            <input id="num1" type="number" placeholder="Enter first number">
+            <label for="num2">Number 2</label>
+            <input id="num2" type="number" placeholder="Enter second number">
+            <button id="addButton">Add numbers</button>
+            <p id="sumResult"></p>
+        </div>
+
+        <div>
+            <h3>Local Time</h3>
+            <p>Current time: <span id="localTime"></span></p>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
 </body>
 </html>
