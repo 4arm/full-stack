@@ -446,3 +446,47 @@ input[type='number']::placeholder {
   }
 }
 
+.site-footer {
+  max-width: 980px;
+  margin: 0 auto 24px;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--muted);
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 120ms ease;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 20px;
+  }
+}
+
