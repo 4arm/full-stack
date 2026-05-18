@@ -1,0 +1,24 @@
+{
+  "name": "e-learn-izham",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.4",
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^5.0.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.16"
+  }
+}
