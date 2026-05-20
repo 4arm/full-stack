@@ -1,0 +1,115 @@
+{
+  "transactions": [
+    {
+      "location": "Penang",
+      "quantity": 4,
+      "timestamp": 1779269252933
+    },
+    {
+      "location": "Ipoh",
+      "quantity": 4,
+      "timestamp": 1779269254022
+    },
+    {
+      "location": "Putrajaya",
+      "quantity": 3,
+      "timestamp": 1779269255309
+    },
+    {
+      "location": "Putrajaya",
+      "quantity": 4,
+      "timestamp": 1779269387813
+    },
+    {
+      "location": "Kota Bharu",
+      "quantity": 2,
+      "timestamp": 1779269388956
+    },
+    {
+      "location": "Subang Jaya",
+      "quantity": 2,
+      "timestamp": 1779269390393
+    },
+    {
+      "location": "Kuala Lumpur",
+      "quantity": 2,
+      "timestamp": 1779269496868
+    },
+    {
+      "location": "Kuala Lumpur",
+      "quantity": 4,
+      "timestamp": 1779269498005
+    },
+    {
+      "location": "Subang Jaya",
+      "quantity": 3,
+      "timestamp": 1779269499508
+    },
+    {
+      "location": "Selangor",
+      "quantity": 1,
+      "timestamp": 1779269500403
+    },
+    {
+      "location": "Ipoh",
+      "quantity": 1,
+      "timestamp": 1779269501024
+    },
+    {
+      "location": "Johor Bahru",
+      "quantity": 1,
+      "timestamp": 1779269501686
+    },
+    {
+      "location": "Johor Bahru",
+      "quantity": 3,
+      "timestamp": 1779269502529
+    },
+    {
+      "location": "Johor Bahru",
+      "quantity": 1,
+      "timestamp": 1779269503272
+    },
+    {
+      "location": "Kuala Lumpur",
+      "quantity": 5,
+      "timestamp": 1779269504171
+    },
+    {
+      "location": "Subang Jaya",
+      "quantity": 1,
+      "timestamp": 1779269505451
+    },
+    {
+      "location": "Shah Alam",
+      "quantity": 1,
+      "timestamp": 1779269506576
+    },
+    {
+      "location": "Ipoh",
+      "quantity": 1,
+      "timestamp": 1779269507587
+    },
+    {
+      "location": "Malacca",
+      "quantity": 4,
+      "timestamp": 1779269508293
+    },
+    {
+      "location": "Kuala Lumpur",
+      "quantity": 4,
+      "timestamp": 1779269509468
+    },
+    {
+      "location": "Shah Alam",
+      "quantity": 4,
+      "timestamp": 1779269510974
+    },
+    {
+      "location": "Johor Bahru",
+      "quantity": 4,
+      "timestamp": 1779269511714
+    }
+  ],
+  "lastRead": 1779269511714
+}

@@ -1,0 +1,72 @@
+[Buyer UI Interface]             [SharedState Transaction Engine]         [Detached Dashboard Tabs]
+       │                                       │                                      │
+       │─── 1. processBuyTransaction(loc, qty) ──>                                    │
+       │                                       │── [Aquire State Lock]                │
+       │                                       │── [Verify Availability]              │
+       │                                       │                                      │
+       │                                       ──── Enforce CRITICAL Decision ──┐     │
+       │                                                                        │     │
+       │ <─── 2a. [Stock Unavailable] Rejection ────────────────────────────────┘     │
+       │                                                                              │
+       │ <─── 2b. [Stock Confirmed] Success Confirmation ───────────────────────┐     │
+       │                                                                        │     │
+       │                                       ┌────────────────────────────────┘     │
+       │                                       ▼                                      │
+       │                               [Update State & Commit]                        │
+       │                                       │                                      │
+       │                                       │─── 3. Broadcast STATE_UPDATE ───────>│
+       │                                       │                                      │  
+       │                                       │                                      │── [Catch Event Message]
+       │                                       │                                      │── [Re-render Dashboard]
+
+       
+
+                  [ Node 1: Get State ]
+                            │
+                            ▼
+               /─────────────────────────\
+              <   Node 2: Valid Location? >
+               \─────────────────────────/
+                 /                     \
+         (No)   /                       \   (Yes)
+               ▼                         ▼
+      [ Node 2E: Err Loc ]     /─────────────────────────\
+                              <  Node 3: Valid Quantity?  >
+                               \─────────────────────────/
+                                 /                     \
+                         (No)   /                       \   (Yes)
+                               ▼                         ▼
+                      [ Node 3E: Err Qty ]     /─────────────────────────\
+                                              <  Node 4: Quantity <= 100 >
+                                               \─────────────────────────/
+                                                 /                     \
+                                         (No)   /                       \   (Yes)
+                                               ▼                         ▼
+                                      [ Node 4E: Err Cap ]    [ Node 5: Compute Remain ]
+                                                                         │
+                                                                         ▼
+                                                       /───────────────────────────────────\
+                                                      <   Node 6: Is Remaining Stock <= 0?  >
+                                                       \───────────────────────────────────/
+                                                         /                               \
+                                                 (Yes)  /                                 \  (No)
+                                                       ▼                                   ▼
+                                              [ Node 6E: Sold Out ]       /───────────────────────────────────\
+                                                                         <  Node 7: Is Request > Remaining?    >
+                                                                          \───────────────────────────────────/
+                                                                            /                               \
+                                                                    (Yes)  /                                 \  (No)
+                                                                          ▼                                   ▼
+                                                                 [ Node 7E: Low Stock ]            [ Node 8: Mutate State ]
+                                                                                                              │
+                                                                                                              ▼
+                                                                                                   [ Node 9: Save State ]
+                                                                                                              │
+                                                                                                              ▼
+                                                                                                   [ Node 10: Broadcast ]
+                                                                                                              │
+                                                                                                              ▼
+                                                                                                   [ Node 11: Notify Local ]
+                                                                                                              │
+                                                                                                              ▼
+                                                                                                   [ Node 12: Return Success ]

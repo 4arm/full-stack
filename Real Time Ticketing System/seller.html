@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sambal Nyet - Seller Dashboard | Khairul Aming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ecf0f1;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 2px solid #00d4ff;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #00d4ff;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #bdc3c7;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===== METRICS GRID ===== */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #00ff88);
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            color: #95a5a6;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #00d4ff;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card.updated .metric-value {
+            animation: pulse 0.6s ease-out;
+            color: #00ff88;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1.2);
+                color: #00ff88;
+            }
+            100% {
+                transform: scale(1);
+                color: #00d4ff;
+            }
+        }
+
+        .metric-subtitle {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-top: 8px;
+        }
+
+        /* ===== PROGRESS BARS ===== */
+        .progress-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .progress-label {
+            font-size: 1em;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #00ff88);
+            width: 0%;
+            transition: width 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #1a1a2e;
+        }
+
+        /* ===== SALES FEED ===== */
+        .sales-feed-container {
+            margin-top: 40px;
+        }
+
+        .feed-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .feed-header h2 {
+            font-size: 1.5em;
+            color: #00d4ff;
+        }
+
+        .live-indicator {
+            width: 12px;
+            height: 12px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% {
+                opacity: 1;
+            }
+            50%, 100% {
+                opacity: 0.3;
+            }
+        }
+
+        .sales-feed {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .sales-feed::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sales-feed::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .sales-feed::-webkit-scrollbar-thumb {
+            background: rgba(0, 212, 255, 0.4);
+            border-radius: 4px;
+        }
+
+        .sales-feed::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 212, 255, 0.6);
+        }
+
+        .sale-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .sale-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .sale-item:first-child {
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sale-item-text {
+            flex: 1;
+        }
+
+        .sale-location {
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 3px;
+        }
+
+        .sale-details {
+            font-size: 0.9em;
+            color: #bdc3c7;
+        }
+
+        .sale-revenue {
+            text-align: right;
+            font-weight: bold;
+            color: #00ff88;
+            font-size: 1.1em;
+            min-width: 80px;
+        }
+
+        .sale-timestamp {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-left: 15px;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .empty-feed {
+            padding: 40px;
+            text-align: center;
+            color: #7f8c8d;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .reset-button {
+            margin-left: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 59, 48, 0.2);
+            border: 1px solid #ff3b30;
+            color: #ff3b30;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .reset-button:hover {
+            background: rgba(255, 59, 48, 0.3);
+            box-shadow: 0 0 10px rgba(255, 59, 48, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌶️ SAMBAL NYET LAUNCH CONTROL</h1>
+        <p class="subtitle">Seller Dashboard - Real-Time Operations Center</p>
+        <p class="subtitle">Operator: Khairul Aming</p>
+    </header>
+
+    <main>
+        <!-- Metrics Grid -->
+        <section class="metrics-grid">
+            <!-- Total Revenue Card -->
+            <section class="metric-card">
+                <div class="metric-label">Total Revenue</div>
+                <div class="metric-value" id="revenueDisplay">RM 0.00</div>
+                <div class="metric-subtitle">From all sales</div>
+            </section>
+
+            <!-- Stock Sold Card -->
+            <section class="metric-card">
+                <div class="metric-label">Bottles Sold</div>
+                <div class="metric-value" id="stockSoldDisplay">0</div>
+                <div class="metric-subtitle">Units moved</div>
+            </section>
+
+            <!-- Stock Remaining Card -->
+            <section class="metric-card">
+                <div class="metric-label">Bottles Remaining</div>
+                <div class="metric-value" id="stockRemainingDisplay">1,000</div>
+                <div class="metric-subtitle">Available inventory</div>
+            </section>
+
+            <!-- Stock Percentage Card -->
+            <section class="metric-card">
+                <div class="metric-label">Sell-Through %</div>
+                <div class="metric-value" id="percentDisplay">0%</div>
+                <div class="metric-subtitle">Progress to SOLD OUT</div>
+            </section>
+        </section>
+
+        <!-- Stock Progress Bar -->
+        <section class="progress-section">
+            <div class="progress-label">
+                <span>INVENTORY DEPLETION</span>
+                <span id="progressText">0 / 1000 bottles</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </section>
+
+        <!-- Real-Time Sales Feed -->
+        <section class="sales-feed-container">
+            <div class="feed-header">
+                <h2>Real-Time Sales Feed</h2>
+                <div class="live-indicator"></div>
+            </div>
+            <div class="sales-feed" id="salesFeed">
+                <div class="empty-feed">Waiting for first purchase...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>🚀 Real-Time Launch Operations | Last Update: <span id="lastUpdate">Just now</span></p>
+        <button class="reset-button" onclick="resetDashboard()">Reset Dashboard</button>
+    </footer>
+
+    <!-- Load Shared State Engine -->
+    <script src="shared-state.js"></script>
+
+    <script>
+        /**
+         * SELLER DASHBOARD - Real-Time Metrics Display
+         * =============================================
+         * Updates all dashboard metrics in real-time as state changes.
+         * Runs in seller.html exclusively.
+         */
+
+        // ===== INITIALIZATION =====
+
+        /**
+         * Initialize dashboard on page load
+         */
+        function initializeDashboard() {
+            // Get initial state
+            const initialState = SharedState.getState();
+            updateAllMetrics(initialState);
+
+            // Subscribe to state changes
+            SharedState.onStateChange(function(newState) {
+                updateAllMetrics(newState);
+            });
+
+            console.log('✓ Seller dashboard initialized');
+        }
+
+        // ===== METRIC UPDATES =====
+
+        /**
+         * Update all dashboard metrics based on current state
+         * @param {Object} state - Current application state
+         */
+        function updateAllMetrics(state) {
+            updateRevenueDisplay(state);
+            updateStockDisplay(state);
+            updateProgressBar(state);
+            updateSalesFeed(state);
+            updateLastUpdateTime();
+        }
+
+        /**
+         * Update revenue display with animation
+         */
+        function updateRevenueDisplay(state) {
+            const revenueElement = document.getElementById('revenueDisplay');
+            const card = revenueElement.closest('.metric-card');
+            
+            revenueElement.textContent = 'RM ' + state.revenue.toFixed(2);
+            
+            // Trigger animation
+            card.classList.remove('updated');
+            void card.offsetWidth; // Force reflow
+            card.classList.add('updated');
+            
+            setTimeout(() => card.classList.remove('updated'), 600);
+        }
+
+        /**
+         * Update stock sold and remaining displays
+         */
+        function updateStockDisplay(state) {
+            const stockSoldEl = document.getElementById('stockSoldDisplay');
+            const stockRemainEl = document.getElementById('stockRemainingDisplay');
+            const percentEl = document.getElementById('percentDisplay');
+            
+            const remaining = state.totalStock - state.stockSold;
+            const percentage = Math.round((state.stockSold / state.totalStock) * 100);
+            
+            // Update with number formatting
+            stockSoldEl.textContent = state.stockSold.toLocaleString();
+            stockRemainEl.textContent = remaining.toLocaleString();
+            percentEl.textContent = percentage + '%';
+            
+            // Animate the cards
+            [stockSoldEl, stockRemainEl, percentEl].forEach(el => {
+                const card = el.closest('.metric-card');
+                card.classList.remove('updated');
+                void card.offsetWidth;
+                card.classList.add('updated');
+                setTimeout(() => card.classList.remove('updated'), 600);
+            });
+        }
+
+        /**
+         * Update inventory progress bar
+         */
+        function updateProgressBar(state) {
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            const percentage = (state.stockSold / state.totalStock) * 100;
+            const remaining = state.totalStock - state.stockSold;
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${state.stockSold.toLocaleString()} / ${state.totalStock.toLocaleString()} bottles`;
+        }
+
+        /**
+         * Update the real-time sales feed
+         */
+        function updateSalesFeed(state) {
+            const feedContainer = document.getElementById('salesFeed');
+            
+            if (state.salesGeolocations.length === 0) {
+                feedContainer.innerHTML = '<div class="empty-feed">Waiting for first purchase...</div>';
+                return;
+            }
+            
+            // Reverse the array to show most recent sales first
+            const sortedSales = [...state.salesGeolocations].reverse();
+            
+            // Build feed HTML
+            let feedHTML = '';
+            sortedSales.forEach((sale, index) => {
+                const timeAgo = getTimeAgo(sale.timestamp);
+                const revenueAmount = 'RM ' + sale.revenue.toFixed(2);
+                
+                feedHTML += `
+                    <div class="sale-item">
+                        <div class="sale-item-text">
+                            <div class="sale-location">📍 ${sale.location}</div>
+                            <div class="sale-details">Bought ${sale.quantity} bottle${sale.quantity > 1 ? 's' : ''}</div>
+                        </div>
+                        <div class="sale-revenue">${revenueAmount}</div>
+                        <div class="sale-timestamp">${timeAgo}</div>
+                    </div>
+                `;
+            });
+            
+            feedContainer.innerHTML = feedHTML;
+        }
+
+        /**
+         * Update the "last update" timestamp
+         */
+        function updateLastUpdateTime() {
+            const lastUpdateEl = document.getElementById('lastUpdate');
+            lastUpdateEl.textContent = 'Just now';
+        }
+
+        /**
+         * Convert timestamp to human-readable "time ago" format
+         */
+        function getTimeAgo(timestamp) {
+            const now = Date.now();
+            const diff = now - timestamp;
+            const seconds = Math.floor(diff / 1000);
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(minutes / 60);
+            
+            if (seconds < 60) return 'now';
+            if (minutes < 60) return minutes === 1 ? '1m ago' : minutes + 'm ago';
+            if (hours < 24) return hours === 1 ? '1h ago' : hours + 'h ago';
+            return 'today';
+        }
+
+        /**
+         * Reset dashboard to initial state (development utility)
+         */
+        function resetDashboard() {
+            if (confirm('Reset all sales data? This cannot be undone.')) {
+                SharedState.resetState();
+                console.log('Dashboard reset');
+            }
+        }
+
+        // Initialize when page loads
+        window.addEventListener('load', initializeDashboard);
+    </script>
+</body>
+</html>
