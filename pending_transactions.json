@@ -1,115 +1,70 @@
 {
   "transactions": [
     {
-      "location": "Penang",
-      "quantity": 4,
-      "timestamp": 1779269252933
-    },
-    {
       "location": "Ipoh",
-      "quantity": 4,
-      "timestamp": 1779269254022
-    },
-    {
-      "location": "Putrajaya",
       "quantity": 3,
-      "timestamp": 1779269255309
+      "timestamp": 1779374218014
     },
     {
-      "location": "Putrajaya",
-      "quantity": 4,
-      "timestamp": 1779269387813
-    },
-    {
-      "location": "Kota Bharu",
-      "quantity": 2,
-      "timestamp": 1779269388956
-    },
-    {
-      "location": "Subang Jaya",
-      "quantity": 2,
-      "timestamp": 1779269390393
-    },
-    {
-      "location": "Kuala Lumpur",
-      "quantity": 2,
-      "timestamp": 1779269496868
-    },
-    {
-      "location": "Kuala Lumpur",
-      "quantity": 4,
-      "timestamp": 1779269498005
-    },
-    {
-      "location": "Subang Jaya",
-      "quantity": 3,
-      "timestamp": 1779269499508
-    },
-    {
-      "location": "Selangor",
-      "quantity": 1,
-      "timestamp": 1779269500403
-    },
-    {
-      "location": "Ipoh",
-      "quantity": 1,
-      "timestamp": 1779269501024
-    },
-    {
-      "location": "Johor Bahru",
-      "quantity": 1,
-      "timestamp": 1779269501686
-    },
-    {
-      "location": "Johor Bahru",
-      "quantity": 3,
-      "timestamp": 1779269502529
-    },
-    {
-      "location": "Johor Bahru",
-      "quantity": 1,
-      "timestamp": 1779269503272
-    },
-    {
-      "location": "Kuala Lumpur",
+      "location": "Malacca",
       "quantity": 5,
-      "timestamp": 1779269504171
-    },
-    {
-      "location": "Subang Jaya",
-      "quantity": 1,
-      "timestamp": 1779269505451
+      "timestamp": 1779374219163
     },
     {
       "location": "Shah Alam",
       "quantity": 1,
-      "timestamp": 1779269506576
+      "timestamp": 1779374220577
     },
     {
       "location": "Ipoh",
-      "quantity": 1,
-      "timestamp": 1779269507587
+      "quantity": 2,
+      "timestamp": 1779374221444
+    },
+    {
+      "location": "Johor Bahru",
+      "quantity": 3,
+      "timestamp": 1779374222448
     },
     {
       "location": "Malacca",
       "quantity": 4,
-      "timestamp": 1779269508293
+      "timestamp": 1779374223744
+    },
+    {
+      "location": "Penang",
+      "quantity": 4,
+      "timestamp": 1779374224772
     },
     {
       "location": "Kuala Lumpur",
       "quantity": 4,
-      "timestamp": 1779269509468
-    },
-    {
-      "location": "Shah Alam",
-      "quantity": 4,
-      "timestamp": 1779269510974
+      "timestamp": 1779374226024
     },
     {
       "location": "Johor Bahru",
-      "quantity": 4,
-      "timestamp": 1779269511714
+      "quantity": 3,
+      "timestamp": 1779374227081
+    },
+    {
+      "location": "Johor Bahru",
+      "quantity": 5,
+      "timestamp": 1779374227623
+    },
+    {
+      "location": "Penang",
+      "quantity": 5,
+      "timestamp": 1779374228791
+    },
+    {
+      "location": "Subang Jaya",
+      "quantity": 1,
+      "timestamp": 1779374229642
+    },
+    {
+      "location": "Penang",
+      "quantity": 3,
+      "timestamp": 1779374231072
     }
   ],
-  "lastRead": 1779269511714
+  "lastRead": 1779374231081
 }

@@ -78,7 +78,10 @@ def generate_transaction(max_allowed):
     requested_qty = random.randint(MIN_QUANTITY, MAX_QUANTITY)
     actual_qty = min(requested_qty, max_allowed)
     
+    account_id = f"User_{random.randint(1000, 9999)}"
+    
     transaction = {
+        'account_id': account_id,
         'location': random.choice(LOCATIONS),
         'quantity': actual_qty,
         'timestamp': int(time.time() * 1000)  # Milliseconds for JS compatibility
@@ -220,7 +223,8 @@ def run_simulation():
             total_revenue += transaction['quantity'] * UNIT_PRICE
             
             # Display status
-            print(f"[{transaction_count}] {transaction['location']:15} | "
+            print(f"[{transaction_count}] {transaction['account_id']:10} | "
+                  f"{transaction['location']:15} | "
                   f"Qty: {transaction['quantity']:2} | "
                   f"Total: {lifetime_bottles_sold:4}/{TOTAL_STOCK} | "
                   f"Revenue: RM {total_revenue:8.2f}", end='\r')

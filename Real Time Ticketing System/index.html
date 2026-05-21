@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sambal Nyet Live Launch & Store</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        h1 {
+            color: #e63946;
+        }
+        .dashboard {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        .stock-ticker {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1d3557;
+            margin-bottom: 1rem;
+            text-align: center;
+            padding: 1rem;
+            background: #e8f4f8;
+            border-radius: 8px;
+            border: 2px solid #a8dadc;
+        }
+        .buy-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #fafafa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .buy-form input, .buy-form select, .buy-form button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .buy-form button {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .buy-form button:hover {
+            background-color: #d62828;
+        }
+        .buy-form button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+        .message {
+            text-align: center;
+            font-weight: bold;
+            min-height: 24px;
+        }
+        .message.success { color: #2a9d8f; }
+        .message.error { color: #e63946; }
+
+        .feed-container {
+            margin-top: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            background: #fafafa;
+        }
+        .transaction {
+            padding: 0.75rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .transaction:last-child {
+            border-bottom: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .badge {
+            background: #e63946;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌶️ Sambal Nyet Live Launch</h1>
+    
+    <div class="dashboard">
+        <div class="stock-ticker">
+            ⚡ Remaining Stock: <span id="stockRemaining">Loading...</span>
+        </div>
+        
+        <h2>Purchase Now</h2>
+        <form class="buy-form" id="buyForm">
+            <select id="buyerLocation" required>
+                <option value="">Select Location</option>
+                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                <option value="Shah Alam">Shah Alam</option>
+                <option value="Penang">Penang</option>
+                <option value="Johor Bahru">Johor Bahru</option>
+                <option value="Kota Bharu">Kota Bharu</option>
+            </select>
+            <input type="number" id="buyQuantity" min="1" max="100" value="1" placeholder="Quantity" required>
+            <button type="submit" id="buyBtn">BUY NOW</button>
+            <div id="buyMessage" class="message"></div>
+        </form>
+    </div>
+
+    <div class="dashboard">
+        <h2>Live Transaction Feed</h2>
+        <p>Watching for real-time purchases from all users...</p>
+        <div class="feed-container" id="feed">
+            <!-- Transactions will be injected here -->
+        </div>
+    </div>
+
+    <script src="shared-state.js"></script>
+    <script>
+        const feedContainer = document.getElementById('feed');
+        const stockRemainingEl = document.getElementById('stockRemaining');
+        const buyForm = document.getElementById('buyForm');
+        const buyBtn = document.getElementById('buyBtn');
+        const buyMessage = document.getElementById('buyMessage');
+
+        function renderFeed(state) {
+            feedContainer.innerHTML = '';
+            
+            // Show recent transactions
+            const transactions = [...state.salesGeolocations].reverse();
+            
+            if (transactions.length === 0) {
+                feedContainer.innerHTML = '<div style="text-align: center; color: #888; padding: 20px;">No transactions yet... Be the first!</div>';
+                return;
+            }
+
+            transactions.forEach(tx => {
+                const div = document.createElement('div');
+                div.className = 'transaction';
+                const date = new Date(tx.timestamp).toLocaleTimeString();
+                div.innerHTML = `
+                    <span> 📍 ${tx.location}</span>
+                    <span>
+                        <span class="badge">${tx.quantity} units</span> 
+                        <small style="color:#888; margin-left:10px;">${date}</small>
+                    </span>
+                `;
+                feedContainer.appendChild(div);
+            });
+        }
+
+        function updateUI() {
+            const state = SharedState.getState();
+            const remaining = state.totalStock - state.stockSold;
+            
+            stockRemainingEl.textContent = remaining;
+            
+            if (remaining <= 0) {
+                stockRemainingEl.style.color = '#e63946';
+                stockRemainingEl.textContent = 'SOLD OUT';
+                buyBtn.disabled = true;
+                buyBtn.textContent = 'Sold Out';
+            } else {
+                stockRemainingEl.style.color = '#1d3557';
+                buyBtn.disabled = false;
+                buyBtn.textContent = 'BUY NOW';
+            }
+
+            renderFeed(state);
+        }
+
+        // Listen for state changes (cross-tab synchronization)
+        SharedState.onStateChange((newState) => {
+            updateUI();
+        });
+
+        // Initial render
+        updateUI();
+
+        // Handle Purchase
+        buyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const location = document.getElementById('buyerLocation').value;
+            const quantity = parseInt(document.getElementById('buyQuantity').value, 10);
+            
+            // This leverages the race-condition safe function in shared-state.js
+            const result = SharedState.processBuyTransaction(location, quantity);
+            
+            if (result.success) {
+                buyMessage.textContent = '✓ Purchase successful! (' + quantity + ' units)';
+                buyMessage.className = 'message success';
+                document.getElementById('buyQuantity').value = 1; // Reset qty
+            } else {
+                buyMessage.textContent = '❌ ' + result.message;
+                buyMessage.className = 'message error';
+            }
+            
+            setTimeout(() => { 
+                buyMessage.textContent = ''; 
+                buyMessage.className = 'message';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
